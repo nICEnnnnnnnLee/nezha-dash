@@ -6,7 +6,7 @@ import Image from "next/image";
 import useSWR from "swr";
 import { formatBytes, nezhaFetcher } from "@/lib/utils";
 import { Loader } from "@/components/loading/Loader";
-import { ServerApi } from "@/app/types/nezha-api";
+import { ServerApi } from "@/app/[lng]/types/nezha-api";
 import getEnv from "@/lib/env-entry";
 
 export default function ServerOverviewClient() {

@@ -1,4 +1,4 @@
-import { NezhaAPISafe } from "@/app/types/nezha-api";
+import { NezhaAPISafe } from "@/app/[lng]/types/nezha-api";
 import { cn, formatBytes } from "@/lib/utils";
 
 export function ServerCardPopoverCard({

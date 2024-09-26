@@ -7,6 +7,9 @@ import React from "react";
 import { Viewport } from "next";
 import { cn } from "@/lib/utils";
 import { PublicEnvScript } from "next-runtime-env";
+import { dir } from "i18next";
+import { languages } from "@/i18n/settings";
+
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -33,11 +36,16 @@ export const viewport: Viewport = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  params: { lng: string };
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export async function generateStaticParams() {
+  return languages.map((lng) => ({ lng }));
+}
+
+export default function RootLayout({ children, params: { lng } }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={lng} dir={dir(lng)} suppressHydrationWarning>
       <head>
         <PublicEnvScript />
       </head>

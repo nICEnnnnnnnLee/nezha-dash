@@ -1,7 +1,8 @@
 import React from "react";
 
-import Header from "@/app/(main)/header";
+
 import Footer from "./footer";
+import Header from "./header";
 
 type DashboardProps = {
   children: React.ReactNode;

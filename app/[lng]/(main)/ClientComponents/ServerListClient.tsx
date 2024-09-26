@@ -1,6 +1,6 @@
 "use client";
 
-import { ServerApi } from "@/app/types/nezha-api";
+import { ServerApi } from "@/app/[lng]/types/nezha-api";
 import ServerCard from "@/components/ServerCard";
 import { nezhaFetcher } from "@/lib/utils";
 import useSWR from "swr";
