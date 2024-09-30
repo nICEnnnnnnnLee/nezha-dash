@@ -18,9 +18,12 @@ export async function GetNezhaData() {
   if (nezhaBaseUrl[nezhaBaseUrl.length - 1] === "/") {
     nezhaBaseUrl = nezhaBaseUrl.slice(0, -1);
   }
+  var nezhaHeaderStr = getEnv("NezhaHeader") || "{}";
+  var nezhaHeader = JSON.parse(nezhaHeaderStr);
   try {
     const response = await fetch(nezhaBaseUrl + "/api/v1/server/details", {
       headers: {
+        ...nezhaHeader,
         Authorization: getEnv("NezhaAuth") as string,
       },
       next: {
