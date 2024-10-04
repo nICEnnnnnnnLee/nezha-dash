@@ -12,6 +12,7 @@ import { ThemeProvider } from "next-themes";
 import { Viewport } from "next";
 import { cn } from "@/lib/utils";
 import { locales } from "@/i18n-metadata";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -36,10 +37,14 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-export function generateStaticParams() {
+// optimization: force static for vercel
+export const dynamic = process.env.VERCEL ? "force-static" : "auto";
+
+export const runtime = 'edge';
+
+export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
-
 
 export default function LocaleLayout({
   children,
@@ -48,6 +53,8 @@ export default function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  unstable_setRequestLocale(locale);
+
   const messages = useMessages();
   return (
     <html lang={locale} suppressHydrationWarning>
